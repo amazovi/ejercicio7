@@ -6,7 +6,7 @@ import java.util.List;
 import es.cic.curso.ejercicio7.model.Animal;
 
 public class AnimalService {
-
+//
     public List<Animal> listAnimals() {
         Animal dog = new Animal();
         dog.setName("Dog");
