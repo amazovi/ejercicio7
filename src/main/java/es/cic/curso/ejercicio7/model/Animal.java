@@ -13,6 +13,7 @@ public class Animal {
     private Long id;
     private String name;
     private String type;
+    private String owner;
 
     // Getters and Setters
     public Long getId() {
@@ -37,5 +38,20 @@ public class Animal {
 
     public void setType(String type) {
         this.type = type;
+ 
+ 
+    }
+    public String getOwner() {
+
+        return owner;
+
+    }
+
+
+
+    public void setOwner(String owner) {
+
+        this.owner = owner;
+
     }
 }
