@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import es.cic.curso.ejercicio7.model.Animal;
 import es.cic.curso.ejercicio7.repository.AnimalRepository;
@@ -37,18 +38,18 @@ public class SecurityTest {
     }
 
     @Test
-    @WithMockUser(username = "notOwner")
-    public void whenNotOwnerTriesToReadAnimal_thenThrowException() throws Exception {
-        System.out.println("Intentando acceder al animal con ID: " + testAnimal.getId() + " como usuario 'notOwner'");
-        mockMvc.perform(get("/api/animals/" + testAnimal.getId()))
-                .andExpect(status().isForbidden())
-                .andDo(result -> {
-                    System.out.println("Resultado de la solicitud: " + result.getResponse().getStatus());
-                    if (result.getResponse().getStatus() == 403) {
-                        System.out.println("Acceso denegado correctamente para el usuario 'notOwner'.");
-                    } else {
-                        System.out.println("Error: Se esperaba un estado 403 Forbidden.");
-                    }
-                });
+    
+    public void whenAccessWithoutAuthentication() throws Exception {
+        mockMvc.perform(get("/api/animals/"))
+        .andDo(MockMvcResultHandlers.print()); // la respuesta para ver detalles del error
     }
+
+    @Test
+    @WithMockUser(username = "user", roles = "USER")
+    public void whenUserTriesToReadAnimal_thenForbidden() throws Exception {
+        mockMvc.perform(get("/api/animals/" + testAnimal.getId()))
+                .andExpect(status().isForbidden());
+    }
+
+    
 }

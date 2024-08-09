@@ -15,6 +15,16 @@ public class Animal {
     private String type;
     private String owner;
 
+
+    
+    public Animal() {
+    }
+
+    public Animal(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;
