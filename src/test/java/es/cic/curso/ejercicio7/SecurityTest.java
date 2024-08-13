@@ -38,7 +38,6 @@ public class SecurityTest {
     }
 
     @Test
-    
     public void whenAccessWithoutAuthentication() throws Exception {
         mockMvc.perform(get("/api/animals/"))
         .andDo(MockMvcResultHandlers.print()); // la respuesta para ver detalles del error

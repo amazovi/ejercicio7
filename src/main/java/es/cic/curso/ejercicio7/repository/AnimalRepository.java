@@ -9,3 +9,5 @@ import es.cic.curso.ejercicio7.model.Animal;
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
 }
+
+
