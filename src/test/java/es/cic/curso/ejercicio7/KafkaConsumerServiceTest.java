@@ -8,14 +8,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import es.cic.curso.ejercicio7.model.Animal;
 import es.cic.curso.ejercicio7.service.KafkaConsumerService;
 
 @SpringJUnitConfig
-@EmbeddedKafka(partitions = 1, topics = { "animal-topic" })
 public class KafkaConsumerServiceTest {
 
     @Mock
